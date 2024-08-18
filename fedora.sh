@@ -110,7 +110,7 @@ unpriv curl -s https://raw.githubusercontent.com/TommyTran732/Linux-Setup-Script
 sudo chmod 644 /etc/systemd/coredump.conf.d/disable.conf
 
 # network manager
-unpriv curl -s https://codeberg.org/Magnesium1062/setup-scripts/raw/branch/main/etc/sysctl.d/00-harden.conf | sudo tee /etc/NetworkManager/conf.d/00-harden.conf > /dev/null
+unpriv curl -s https://codeberg.org/Magnesium1062/setup-scripts/raw/branch/main/etc/NetworkManager/conf.d/00-harden.conf | sudo tee /etc/NetworkManager/conf.d/00-harden.conf > /dev/null
 sudo chmod 644 /etc/NetworkManager/conf.d/00-harden.conf
 unpriv curl -s https://raw.githubusercontent.com/TommyTran732/Linux-Setup-Scripts/main/etc/NetworkManager/conf.d/01-transient-hostname.conf | sudo tee /etc/NetworkManager/conf.d/01-transient-hostname.conf > /dev/null
 sudo chmod 644 /etc/NetworkManager/conf.d/01-transient-hostname.conf
@@ -138,13 +138,12 @@ unpriv curl -s https://codeberg.org/divested/brace/raw/branch/master/brace/etc/p
 sudo chmod 644 /etc/profile.d/brace-helpers.sh
 unpriv curl -s https://codeberg.org/Magnesium1062/setup-scripts/raw/branch/main/etc/profile.d/helpers.sh | sudo tee /etc/profile.d/helpers.sh > /dev/null
 sudo chmod 644 /etc/profile.d/helpers.sh
-source ~/.bashrc
 
 # systemd
 sudo mkdir -p /etc/systemd/system/biboumi.service.d
 unpriv curl -s https://codeberg.org/divested/brace/raw/branch/master/brace/usr/lib/systemd/system/biboumi.service.d/98-user.conf | sudo tee /etc/systemd/system/biboumi.service.d/98-user.conf  > /dev/null
 sudo chmod 644 /etc/systemd/system/biboumi.service.d/98-user.conf
-unpriv curl -s https://codeberg.org/divested/brace/raw/branch/master/brace/usr/lib/systemd/system/biboumi.service.d/99-brace.conf | sudo tee /etc/systemd/system/biboumi.service.d/98-brace.conf  > /dev/null
+unpriv curl -s https://codeberg.org/divested/brace/raw/branch/master/brace/usr/lib/systemd/system/biboumi.service.d/99-brace.conf | sudo tee /etc/systemd/system/biboumi.service.d/99-brace.conf  > /dev/null
 sudo chmod 644 /etc/systemd/system/biboumi.service.d/99-brace.conf
 
 sudo mkdir -p /etc/systemd/system/chronyd.service.d
@@ -207,6 +206,9 @@ sudo mkdir -p /etc/systemd/system/wpa_supplicant.service.d
 unpriv curl -s https://codeberg.org/divested/brace/raw/branch/master/brace/usr/lib/systemd/system/wpa_supplicant.service.d/99-brace.conf | sudo tee /etc/systemd/system/wpa_supplicant.service.d/99-brace.conf  > /dev/null
 sudo chmod 644 /etc/systemd/system/wpa_supplicant.service.d/99-brace.conf
 
+sudo systemctl daemon-reload
+sudo systemctl restart NetworkManager
+
 # Chrony
 unpriv curl -s https://codeberg.org/divested/brace/raw/branch/master/brace/etc/chrony.brace.conf | sudo tee /etc/chrony.brace.conf > /dev/null
 sudo chmod 644 /etc/chrony.brace.conf
@@ -219,8 +221,8 @@ unpriv curl -s https://raw.githubusercontent.com/TommyTran732/Linux-Setup-Script
 sudo chmod 644 /etc/ssh/ssh_config.d/10-custom.conf
 
 # DNSSEC
-unpriv curl -s https://codeberg.org/divested/brace/raw/branch/master/brace/usr/lib/systemd/resolved.conf.d/brace.conf | sudo tee /etc/systemd/resolved.conf.d/brace.conf > /dev/null
-sudo chmod 644 /etc/systemd/resolved.conf.d/brace.conf
+unpriv curl -s https://codeberg.org/divested/brace/raw/branch/master/brace/usr/lib/systemd/resolved.conf.d/brace.conf | sudo tee /usr/lib/systemd/resolved.conf.d/brace.conf > /dev/null
+sudo chmod 644 /usr/lib/systemd/resolved.conf.d/brace.conf
 
 # Disable GJS and WebkitGTK JIT
 unpriv curl https://raw.githubusercontent.com/TommyTran732/Linux-Setup-Scripts/main/etc/environment | sudo tee -a /etc/environment
@@ -240,13 +242,13 @@ gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 sudo systemctl enable fstrim.timer --now
 
 # debloat
-sudo dnf -y remove fedora-bookmarks fedora-chromium-config '*anthy*' '*hangul*' ibus-typing-booster '*m17n*' '*pinyin*' '*speech*' texlive-libs words '*zhuyin*' 'sssd*' realmd cyrus-sasl-gssapi quota* dos2unix kpartx sos samba-client gvfs-smb gnome-calendar gnome-connections gnome-contacts gnome-maps gnome-remote-desktop gnome-tour gnome-weather yelp abrt malcontent
+sudo dnf -y remove fedora-bookmarks fedora-chromium-config '*anthy*' '*hangul*' ibus-typing-booster '*m17n*' '*pinyin*' '*speech*' texlive-libs words '*zhuyin*' 'sssd*' realmd cyrus-sasl-gssapi quota* dos2unix kpartx sos samba-client gvfs-smb gnome-calendar gnome-connections gnome-contacts gnome-maps gnome-remote-desktop gnome-tour gnome-weather yelp abrt
 
 # kill unnecessary services
-sudo systemctl disable gssproxy.service pcscd.service pcscd.socket abrtd.service abrt-journal-core.service abrt-oops.service abrt-pstoreoops.service abrt-vmcore.service abrt-xorg.service atd.service mcelog.service avahi-daemon.service avahi-daemon.socket ModemManager.service iscsid.service iscsid.socket iscsi-init.service iscsi.service iscsiuio.service iscsiuio.socket livesys.service livesys-late.service multipathd.service multipathd.socket smartd.service vboxservice.service passim.service
+sudo systemctl disable gssproxy.service pcscd.service pcscd.socket abrtd.service abrt-journal-core.service abrt-oops.service abrt-pstoreoops.service abrt-vmcore.service abrt-xorg.service atd.service mcelog.service avahi-daemon.service avahi-daemon.socket ModemManager.service iscsid.service iscsid.socket iscsi-init.service iscsi.service iscsiuio.service iscsiuio.socket livesys.service livesys-late.service multipathd.service multipathd.socket smartd.service vboxservice.service passim.service --now > 2>/dev/null
 
 # kill dangerous early debug-shell service
-https://fedoraproject.org/wiki/Systemd_early_debug-shell
+# https://fedoraproject.org/wiki/Systemd_early_debug-shell
 sudo systemctl mask debug-shell.service
 
 # kill kdump
