@@ -54,6 +54,10 @@ unpriv curl -s https://raw.githubusercontent.com/TommyTran732/Linux-Setup-Script
 unpriv curl -s https://raw.githubusercontent.com/TommyTran732/Linux-Setup-Scripts/main/etc/dconf/db/local.d/locks/privacy | sudo tee /etc/dconf/db/local.d/locks/privacy > /dev/null
 sudo chmod 644 /etc/dconf/db/local.d/locks/*
 
+umask 022
+sudo dconf update
+umask 077
+
 # firewall
 sudo firewall-cmd --set-default-zone=drop
 sudo firewall-cmd --add-protocol=ipv6-icmp --permanent
