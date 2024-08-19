@@ -382,7 +382,7 @@ flatpak override --user --filesystem=host-os:ro --env=LD_PRELOAD=/var/run/host/u
 
 # firejail
 sudo dnf -y install firejail
-sudo firecfg
+# sudo firecfg
 
 # real-ucode
 sudo dnf -y install real-ucode
@@ -390,7 +390,7 @@ sudo dnf -y install real-ucode
 # android
 sudo dnf -y install android-tools enjarify
 sudo dnf copr enable nielsenb/android-udev-rules -y
-sudo dnf update --refresh
+sudo dnf -y update --refresh
 sudo dnf -y install android-udev-rules
 
 # dev
