@@ -16,7 +16,7 @@ unpriv(){
 }
 
 # speed up dnf & disable countme
-unpriv curl -s https://codeberg.org/Magnesium1062/setup-scripts/raw/branch/main/etc/dnf/dnf.conf | sudo tee /etc/dnf/dnf.conf > /dev/null
+unpriv curl -s https://configs.celenity.dev/etc/dnf/dnf.conf | sudo tee /etc/dnf/dnf.conf > /dev/null
 sudo chmod 644 /etc/dnf/dnf.conf
 sudo sed -i 's/countme=1/countme=0/' /etc/yum.repos.d/*.repo;
 
@@ -92,11 +92,11 @@ sudo grubby --update-kernel=ALL --args="spec_rstack_overflow=safe-ret gather_dat
 sudo grubby --update-kernel=ALL --args="random.trust_cpu=off random.trust_bootloader=off"
 
 # modprobe
-unpriv curl -s https://codeberg.org/Magnesium1062/setup-scripts/raw/branch/main/etc/modprobe.d/blacklist.conf | sudo tee /etc/modprobe.d/blacklist.conf > /dev/null
+unpriv curl -s https://configs.celenity.dev/etc/modprobe.d/blacklist.conf | sudo tee /etc/modprobe.d/blacklist.conf > /dev/null
 sudo chmod 644 /etc/modprobe.d/blacklist.conf
 
 # sysctl
-unpriv curl -s https://codeberg.org/Magnesium1062/setup-scripts/raw/branch/main/etc/sysctl.d/99-restrict.conf | sudo tee /etc/sysctl.d/99-restrict.conf > /dev/null
+unpriv curl -s https://configs.celenity.dev/etc/sysctl.d/99-restrict.conf | sudo tee /etc/sysctl.d/99-restrict.conf > /dev/null
 sudo chmod 644 /etc/sysctl.d/99-restrict.conf
 sudo dracut -f
 sudo sysctl -p
@@ -110,7 +110,7 @@ unpriv curl -s https://raw.githubusercontent.com/TommyTran732/Linux-Setup-Script
 sudo chmod 644 /etc/systemd/coredump.conf.d/disable.conf
 
 # network manager
-unpriv curl -s https://codeberg.org/Magnesium1062/setup-scripts/raw/branch/main/etc/NetworkManager/conf.d/00-harden.conf | sudo tee /etc/NetworkManager/conf.d/00-harden.conf > /dev/null
+unpriv curl -s https://configs.celenity.dev/etc/NetworkManager/conf.d/00-harden.conf | sudo tee /etc/NetworkManager/conf.d/00-harden.conf > /dev/null
 sudo chmod 644 /etc/NetworkManager/conf.d/00-harden.conf
 unpriv curl -s https://raw.githubusercontent.com/TommyTran732/Linux-Setup-Scripts/main/etc/NetworkManager/conf.d/01-transient-hostname.conf | sudo tee /etc/NetworkManager/conf.d/01-transient-hostname.conf > /dev/null
 sudo chmod 644 /etc/NetworkManager/conf.d/01-transient-hostname.conf
@@ -128,7 +128,7 @@ sudo /usr/bin/sed -i 's/\s+nullok//g' /etc/pam.d/system-auth
 # sys hardening
 unpriv curl -s https://codeberg.org/divested/brace/raw/branch/master/brace/usr/lib/tmpfiles.d/99-brace-proc.conf | sudo tee /usr/lib/tmpfiles.d/99-brace-proc.conf > /dev/null
 sudo chmod 644 /usr/lib/tmpfiles.d/99-brace-proc.conf
-unpriv curl -s https://codeberg.org/Magnesium1062/setup-scripts/raw/branch/main/usr/lib/tmpfiles.d/99-harden-sys.conf | sudo tee /usr/lib/tmpfiles.d/99-harden-sys.conf > /dev/null
+unpriv curl -s https://configs.celenity.dev/usr/lib/tmpfiles.d/99-harden-sys.conf | sudo tee /usr/lib/tmpfiles.d/99-harden-sys.conf > /dev/null
 sudo chmod 644 /usr/lib/tmpfiles.d/99-harden-sys.conf
 
 # env
@@ -136,7 +136,7 @@ unpriv curl -s https://codeberg.org/divested/brace/raw/branch/master/brace/etc/p
 sudo chmod 644 /etc/profile.d/brace-env-overrides.sh
 unpriv curl -s https://codeberg.org/divested/brace/raw/branch/master/brace/etc/profile.d/brace-helpers.sh | sudo tee /etc/profile.d/brace-helpers.sh > /dev/null
 sudo chmod 644 /etc/profile.d/brace-helpers.sh
-unpriv curl -s https://codeberg.org/Magnesium1062/setup-scripts/raw/branch/main/etc/profile.d/helpers.sh | sudo tee /etc/profile.d/helpers.sh > /dev/null
+unpriv curl -s https://configs.celenity.dev/etc/profile.d/helpers.sh | sudo tee /etc/profile.d/helpers.sh > /dev/null
 sudo chmod 644 /etc/profile.d/helpers.sh
 
 # systemd
@@ -327,24 +327,24 @@ sudo dnf -y update --refresh
 sudo dnf -y install brave-browser
 
 # configure firefox
-wget https://codeberg.org/Magnesium1062/Phoenix/raw/branch/main/configs/Firefox-UI-Fix/mozilla.cfg
+wget https://phoenix.celenity.dev/configs/Firefox-UI-Fix/mozilla.cfg
 sudo mv mozilla.cfg /usr/lib64/firefox/mozilla.cfg
-wget https://codeberg.org/Magnesium1062/Phoenix/raw/branch/main/defaults/pref/local-settings.js
+wget https://phoenix.celenity.dev/defaults/pref/local-settings.js
 sudo mkdir -p /usr/lib64/firefox/defaults/pref
 sudo chmod 755 /usr/lib64/firefox/defaults/pref
 sudo mv local-settings.js /usr/lib64/firefox/defaults/pref/local-settings.js
-sudo dnf copr enable retold3202/Phoenix-Policies -y
+sudo dnf copr enable celenity/phoenix-policies -y
 sudo dnf -y install phoenix-policies-personal
 
 # thunderbird
 sudo dnf -y install thunderbird
-wget https://codeberg.org/Magnesium1062/Dove/raw/branch/master/mozilla.cfg
+wget https://dove.celenity.dev/mozilla.cfg
 sudo mv mozilla.cfg /usr/lib64/thunderbird/mozilla.cfg
-wget https://codeberg.org/Magnesium1062/Dove/raw/branch/master/defaults/pref/local-settings.js
+wget https://dove.celenity.dev/defaults/pref/local-settings.js
 sudo mkdir -p /usr/lib64/thunderbird/defaults/pref
 sudo chmod 755 /usr/lib64/thunderbird/defaults/pref
 sudo mv local-settings.js /usr/lib64/thunderbird/defaults/pref/local-settings.js
-sudo dnf copr enable retold3202/Dove-Policies -y
+sudo dnf copr enable celenity/dove-policies -y
 sudo dnf -y update --refresh
 sudo dnf -y install dove-policies
 
