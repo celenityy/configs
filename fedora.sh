@@ -245,7 +245,40 @@ sudo systemctl enable fstrim.timer --now
 sudo dnf -y remove fedora-bookmarks fedora-chromium-config '*anthy*' '*hangul*' ibus-typing-booster '*m17n*' '*pinyin*' '*speech*' texlive-libs words '*zhuyin*' 'sssd*' realmd cyrus-sasl-gssapi quota* dos2unix kpartx sos samba-client gvfs-smb gnome-calendar gnome-connections gnome-contacts gnome-maps gnome-remote-desktop gnome-tour gnome-weather yelp abrt
 
 # kill unnecessary services
-sudo systemctl disable gssproxy.service pcscd.service pcscd.socket abrtd.service abrt-journal-core.service abrt-oops.service abrt-pstoreoops.service abrt-vmcore.service abrt-xorg.service atd.service mcelog.service avahi-daemon.service avahi-daemon.socket ModemManager.service iscsid.service iscsid.socket iscsi-init.service iscsi.service iscsiuio.service iscsiuio.socket livesys.service livesys-late.service multipathd.service multipathd.socket smartd.service vboxservice.service passim.service --now > 2>/dev/null
+services=(
+    gssproxy.service
+    pcscd.service
+    pcscd.socket
+    abrtd.service
+    abrt-journal-core.service
+    abrt-oops.service
+    abrt-pstoreoops.service
+    abrt-vmcore.service
+    abrt-xorg.service
+    atd.service
+    mcelog.service
+    avahi-daemon.service
+    avahi-daemon.socket
+    ModemManager.service
+    NetworkManager-wait-online.service
+    iscsid.service
+    iscsid.socket
+    iscsi-init.service
+    iscsi.service
+    iscsiuio.service
+    iscsiuio.socket
+    livesys.service
+    livesys-late.service
+    multipathd.service
+    multipathd.socket
+    smartd.service
+    vboxservice.service
+    passim.service
+)
+
+for service in "${services[@]}"; do
+    sudo systemctl disable "$service" --now || echo "Failed to disable $service (it may not be installed)"
+done
 
 # kill dangerous early debug-shell service
 # https://fedoraproject.org/wiki/Systemd_early_debug-shell
@@ -268,13 +301,15 @@ sudo sed -i 's/^HOME_MODE/#HOME_MODE/g' /etc/login.defs
 sudo sed -i 's/umask 022/umask 077/g' /etc/bashrc
 
 # remove undesired built-in fedora repos
-rm -f /etc/yum.repos.d/rpmfusion-nonfree-nvidia-driver.repo
-rm -f /etc/yum.repos.d/rpmfusion-nonfree-steam.repo
-rm -f /etc/yum.repos.d/google-chrome.repo
+sudo rm -f /etc/yum.repos.d/rpmfusion-nonfree-nvidia-driver.repo
+sudo rm -f /etc/yum.repos.d/rpmfusion-nonfree-steam.repo
+sudo rm -f /etc/yum.repos.d/google-chrome.repo
 
 # rpmfusion
 sudo dnf -y install "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm"
 sudo dnf -y install "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm"
+sudo dnf -y install rpmfusion-free-release-tainted
+sudo dnf -y install rpmfusion-nonfree-release-tainted
 sudo dnf -y update --refresh
 
 # divested-rpm
@@ -313,25 +348,29 @@ sudo dnf copr enable retold3202/Dove-Policies -y
 sudo dnf -y update --refresh
 sudo dnf -y install dove-policies
 
-# codecs
+# codecs & media
 # https://docs.fedoraproject.org/en-US/quick-docs/installing-plugins-for-playing-movies-and-music/
 # https://itsfoss.com/things-to-do-after-installing-fedora/#5-install-multimedia-plugins
 # https://docs.fedoraproject.org/en-US/quick-docs/openh264/
+# https://rpmfusion.org/Howto/Multimedia
 sudo dnf -y group install Multimedia
-sudo dnf update --refresh
-sudo dnf -y install ffmpeg
+sudo dnf -y update --refresh
+sudo dnf -y swap ffmpeg-free ffmpeg --allowerasing
 sudo dnf -y install gstreamer1-plugins-{bad-\*,good-\*,base} gstreamer1-plugin-openh264 gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel
+sudo dnf -y update @multimedia --setopt="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
+sudo dnf -y install @sound-and-video
+sudo dnf -y update --refresh
+sudo dnf -y update @sound-and-video
 sudo dnf -y install lame\* --exclude=lame-devel
 sudo dnf -y group upgrade --with-optional Multimedia
 sudo dnf update --refresh
 sudo dnf -y config-manager --set-enabled fedora-cisco-openh264
 sudo dnf update --refresh
 sudo dnf -y install gstreamer1-plugin-openh264 mozilla-openh264
-flatpak --user org.freedesktop.Platform.openh264 -y
 sudo dnf -y install clinfo mesa-libOpenCL pocl
 sudo dnf -y install mesa-dri-drivers mesa-va-drivers libva libva-utils
-flatpak --user org.freedesktop.Platform.GL.default -y
-sudo dnf -y install vdpauinfo libvdpau libvdpau-va-gl libva-vdpau-driver
+sudo dnf -y install vdpauinfo libvdpau libvdpau-va-gl
+sudo dnf -y install libdvdcss
 
 # update appstream metadata
 sudo dnf -y update @core
@@ -343,7 +382,7 @@ flatpak override --user --filesystem=host-os:ro --env=LD_PRELOAD=/var/run/host/u
 
 # firejail
 sudo dnf -y install firejail
-sudo firecfg
+# sudo firecfg
 
 # real-ucode
 sudo dnf -y install real-ucode
@@ -351,11 +390,11 @@ sudo dnf -y install real-ucode
 # android
 sudo dnf -y install android-tools enjarify
 sudo dnf copr enable nielsenb/android-udev-rules -y
-sudo dnf update --refresh
+sudo dnf -y update --refresh
 sudo dnf -y install android-udev-rules
 
 # dev
-sudo dnf -y install rpmbuild fedpkg
+sudo dnf -y install fedpkg
 sudo dnf -y install proguard
 sudo dnf -y install ruby
 
@@ -374,7 +413,7 @@ sudo dnf -y install codium
 
 # gnome extras
 sudo dnf -y install gnome-tweaks
-flatpak --user com.mattjakeman.ExtensionManager -y
+flatpak --user install com.mattjakeman.ExtensionManager -y
 sudo dnf -y install gnome-firmware
 
 # fonts
@@ -391,7 +430,7 @@ gsettings set org.gnome.desktop.interface icon-theme 'Numix-Circle'
 sudo dnf -y install steam steam-devices
 
 # prism launcher (minecraft)
-flatpak --user org.prismlauncher.PrismLauncher -y
+flatpak --user install org.prismlauncher.PrismLauncher -y
 
 # bleachbit
 sudo dnf -y install bleachbit
@@ -403,7 +442,7 @@ sudo dnf -y install obs-studio
 sudo dnf -y install clamav clamav-freshclam clamtk
 
 # flatseal
-flatpak --user com.github.tchx84.Flatseal -y
+flatpak --user install com.github.tchx84.Flatseal -y
 
 # tor
 sudo dnf -y install tor torbrowser-launcher
