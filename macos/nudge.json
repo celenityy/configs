@@ -1,0 +1,28 @@
+{
+    "optionalFeatures": {
+        "attemptToFetchMajorUpgrade": true,
+        "acceptableCameraUsage": true,
+        "acceptableScreenSharingUsage": true,
+        "aggressiveUserExperience": false,
+        "aggressiveUserFullScreenExperience": false,
+        "asynchronousSoftwareUpdate": true,
+        "disableSoftwareUpdateWorkflow": false,
+        "enforceMinorUpdates": true,
+        "acceptableUpdatePreparingUsage": true,
+        "attemptToCheckForSupportedDevice": true
+    },
+    "userExperience": {
+        "allowGracePeriods": true,
+        "allowUserQuitDeferrals": true,
+        "allowMovableWindow": true,
+        "loadLaunchAgent": true
+    },
+    "userInterface": {
+        "showDeferralCount": true,
+        "singleQuitButton": true,
+        "fallbackLanguage": "en",
+        "showActivelyExploitedCVEs": true,
+        "showDaysRemainingToUpdate": true,
+        "showRequiredDate": true
+    }
+}
