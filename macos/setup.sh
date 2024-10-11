@@ -22,7 +22,7 @@ defaults write com.apple.Safari "ShowFullURLInSmartSearchField" -bool "true" && 
 defaults write NSGlobalDomain "AppleShowAllExtensions" -bool "true" && killall Finder
 
 # Show hidden files in Finder
-defaults write com.apple.finder "AppleShowAllFiles" -bool "true" && killall Finder
+defaults write com.apple.finder AppleShowAllFiles 1 && killall Finder
 
 # Save locally by default
 defaults write NSGlobalDomain "NSDocumentSaveNewDocumentsToCloud" -bool "false"
@@ -45,14 +45,32 @@ defaults write com.apple.AdLib allowApplePersonalizedAdvertising 0
 defaults write com.apple.AdLib allowIdentiferForAdvertising 0
 defaults write com.apple.AdLib "partiality-segment" -string ""
 
+# iCloud Finder integration
+defaults write com.apple.finder FXICloudDriveDesktop 0
+defaults write com.apple.finder FXICloudDriveDocuments 0
+defaults write com.apple.finder FXICloudDriveEnabled 0
+defaults write com.apple.finder FXICloudLoggedIn 0
+defaults write com.apple.finder SidebarShowingSignedIntoiCloud 0
+defaults write com.apple.finder SidebarShowingiCloudDesktop 0
+
 # Siri
 defaults write com.apple.Siri StatusMenuVisible 0
 defaults write com.apple.Siri TypeToSiriEnabled 1
 defaults write com.apple.Siri UserHasDeclinedEnable 1
+defaults write com.apple.parsecd ParTestSeedExpiration -string "2054-09-12 11:12:50\\U202fPM +0000"
 
 # Sharing
 defaults write com.apple.Sharing DisableAutoAccept 1
 defaults write com.apple.Sharing SharedPeopleSuggestionsDisabled 1
+defaults write com.apple.sharingd DiscoverableMode Off
+
+# more sharing?
+defaults write com.apple.preferences.sharing.SharingPrefsExtension homeSharingUIStatus 0
+defaults write com.apple.preferences.sharing.SharingPrefsExtension legacySharingUIStatus 0
+defaults write com.apple.preferences.sharing.SharingPrefsExtension mediaSharingUIStatus 0
+
+# disable photos "featured content"
+defaults write com.apple.photos.shareddefaults FeaturedContentAllowed 0
 
 # Adobe Crash Reporting?
 defaults write com.adobe.crashreporter "always_never_send" 1
@@ -60,8 +78,51 @@ defaults write com.adobe.crashreporter "always_never_send" 1
 # Disable App Store Autoplay
 defaults write com.apple.AppStore AutoPlayVideoSetting off
 
-# Disable Books iCloud Sync?
+# show drives on desktop
+defaults write com.apple.finder ShowExternalHardDrivesOnDesktop 1
+defaults write com.apple.finder ShowHardDrivesOnDesktop 1
+defaults write com.apple.finder ShowRemovableMediaOnDesktop 1
+
+# Disable Books iCloud Sync
 defaults write com.apple.BKAgentService BKAgentServiceUseriCloudSetting 0
+defaults write com.apple.iBooksX BSyncICloudDrive 0
+defaults write com.apple.iBooksX BSyncPreferencesItunesSignedOut 1
+defaults write com.apple.iBooksX BSyncSettingsDisabled 1
+
+# only show local books in search
+defaults write com.apple.iBooksX BKIncludeBookStoreResultsInSearch 0
+
+# disable imovie onboarding
+defaults write com.apple.iMovieApp FFiMovieUpgradeFirstRun 0
+
+# kill itunes social profile?
+defaults write com.apple.itunescloud ICDefaultsKeySocialProfileSupported 0
+
+# disable screen time sync
+defaults write com.apple.knowledge-agent ScreenTimeSyncDisabled 1
+
+# more icloud
+defaults write com.apple.madrid CloudKitSyncingEnabled 0
+defaults write com.apple.madrid iMCloudKitSyncPaused 1
+defaults write com.apple.sociallayerd.CloudKit.ckwriter accountAvailable 0
+
+# clock
+defaults write com.apple.menuextra.clock ShowAMPM 1
+# defaults write com.apple.menuextra.clock ShowDate 1 [Investigate]
+defaults write com.apple.menuextra.clock ShowDayOfWeek 1
+defaults write com.apple.menuextra.clock ShowSeconds 1
+
+# investigate?
+defaults write com.apple.mobileipod EnhancedAudioAvailable 1
+
+# kill apple news analytics
+defaults write com.apple.newscore "com.apple.news.default_event_endpoint" -string ""
+
+# kill apple news ad id
+defaults write com.apple.newscore2 "temporary-user-id-adsUserID" -string ""
+
+# delete one time verification codes after use
+defaults write com.apple.onetimepasscodes DeleteVerificationCodes 1
 
 # Increase Music concurrent downloads
 defaults write com.apple.Music userMaxConcurrentDownloads 10

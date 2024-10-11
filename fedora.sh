@@ -242,7 +242,7 @@ gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 sudo systemctl enable fstrim.timer --now
 
 # debloat
-sudo dnf -y remove fedora-bookmarks fedora-chromium-config '*anthy*' '*hangul*' ibus-typing-booster '*m17n*' '*pinyin*' '*speech*' texlive-libs words '*zhuyin*' 'sssd*' realmd cyrus-sasl-gssapi quota* dos2unix kpartx sos samba-client gvfs-smb gnome-calendar gnome-connections gnome-contacts gnome-maps gnome-remote-desktop gnome-tour gnome-weather yelp abrt
+sudo dnf -y remove fedora-bookmarks fedora-chromium-config '*anthy*' '*hangul*' ibus-typing-booster '*m17n*' '*pinyin*' '*speech*' texlive-libs words '*zhuyin*' 'sssd*' realmd cyrus-sasl-gssapi quota* dos2unix kpartx sos samba-client gvfs-smb gnome-calendar gnome-connections gnome-contacts gnome-maps gnome-remote-desktop gnome-tour gnome-weather evince yelp abrt
 
 # kill unnecessary services
 services=(
@@ -301,9 +301,7 @@ sudo sed -i 's/^HOME_MODE/#HOME_MODE/g' /etc/login.defs
 sudo sed -i 's/umask 022/umask 077/g' /etc/bashrc
 
 # remove undesired built-in fedora repos
-sudo rm -f /etc/yum.repos.d/rpmfusion-nonfree-nvidia-driver.repo
-sudo rm -f /etc/yum.repos.d/rpmfusion-nonfree-steam.repo
-sudo rm -f /etc/yum.repos.d/google-chrome.repo
+sudo dnf -y remove fedora-third-party fedora-workstation-repositories
 
 # rpmfusion
 sudo dnf -y install "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm"
@@ -317,8 +315,15 @@ sudo dnf -y config-manager --add-repo https://codeberg.org/divested/divested-rel
 sudo dnf -y update --refresh
 
 # flathub
+sudo dnf -y remove fedora-flathub-remote
+sudo flatpak remote-delete --system flathub -y
 flatpak remote-add --if-not-exists --user flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-sudo flatpak update
+sudo flatpak update && flatpak update
+
+# harden flatpaks
+
+sudo flatpak override --system --socket=wayland --nosocket=x11 --nosocket=fallback-x11 --nosocket=pulseaudio --nosocket=session-bus --nosocket=system-bus --unshare=network --unshare=ipc --nofilesystem=host:reset --nofilesystem=host-os --nofilesystem=host-etc --nofilesystem=home --nodevice=input --nodevice=shm --nodevice=all --no-talk-name=org.freedesktop.Flatpak --no-talk-name=org.freedesktop.systemd1 --no-talk-name=ca.desrt.dconf --no-talk-name=org.gnome.Shell.Extensions
+flatpak override --user --socket=wayland --nosocket=x11 --nosocket=fallback-x11 --nosocket=pulseaudio --nosocket=session-bus --nosocket=system-bus --unshare=network --unshare=ipc --nofilesystem=host:reset --nofilesystem=host-os --nofilesystem=host-etc --nofilesystem=home --nodevice=input --nodevice=shm --nodevice=all --no-talk-name=org.freedesktop.Flatpak --no-talk-name=org.freedesktop.systemd1 --no-talk-name=ca.desrt.dconf --no-talk-name=org.gnome.Shell.Extensions
 
 # brave
 sudo dnf -y config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
@@ -356,6 +361,9 @@ sudo dnf -y install dove-policies
 sudo dnf -y group install Multimedia
 sudo dnf -y update --refresh
 sudo dnf -y swap ffmpeg-free ffmpeg --allowerasing
+sudo dnf -y swap fdk-aac-free fdk-aac --allowerasing
+sudo dnf -y swap libavcodec libavodec-freeworld --allowerasing
+sudo dnf -y install libheif libheif-freeworld --allowerasing
 sudo dnf -y install gstreamer1-plugins-{bad-\*,good-\*,base} gstreamer1-plugin-openh264 gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel
 sudo dnf -y update @multimedia --setopt="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
 sudo dnf -y install @sound-and-video
@@ -367,10 +375,10 @@ sudo dnf update --refresh
 sudo dnf -y config-manager --set-enabled fedora-cisco-openh264
 sudo dnf update --refresh
 sudo dnf -y install gstreamer1-plugin-openh264 mozilla-openh264
+flatpak --user install org.freedesktop.Platform.openh264 -y
 sudo dnf -y install clinfo mesa-libOpenCL pocl
 sudo dnf -y install mesa-dri-drivers mesa-va-drivers libva libva-utils
-sudo dnf -y install vdpauinfo libvdpau libvdpau-va-gl
-sudo dnf -y install libdvdcss
+sudo dnf -y install vdpauinfo libvdpau libvdpau-va-gl libdvdcss
 
 # update appstream metadata
 sudo dnf -y update @core
@@ -387,16 +395,23 @@ sudo dnf -y install firejail
 # real-ucode
 sudo dnf -y install real-ucode
 
+# java
+sudo dnf -y install java-1.8.0-openjdk java-1.8.0-openjdk-devel java-11-openjdk java-11-openjdk-devel java-17-openjdk java-17-openjdk-devel ava-21-openjdk java-21-openjdk-devel
+
+# dev
+sudo dnf -y groupinstall "Development Tools"
+sudo dnf -y install cargo cmake coreutils copr-rpmbuild fedpkg gcc git git-core glibc glibc-devel glibc-headers kernel-devel kernel-headers make maven mock pacman perl proguard python3 python3-devel rpkg rpm-build rpmdevtools rpmlint ruby rust
+
+# virtualization
+sudo dnf -y install bridge-utils libvirt virt-install qemu-kvm virt-manager
+
 # android
 sudo dnf -y install android-tools enjarify
 sudo dnf copr enable nielsenb/android-udev-rules -y
 sudo dnf -y update --refresh
 sudo dnf -y install android-udev-rules
-
-# dev
-sudo dnf -y install fedpkg
-sudo dnf -y install proguard
-sudo dnf -y install ruby
+flatpak --user install com.google.AndroidStudio -y
+flatpak --user override com.google.AndroidStudio --device=dri --device=kvm --share=network
 
 # vscodium
 sudo tee -a /etc/yum.repos.d/vscodium.repo << 'EOF'
@@ -414,6 +429,7 @@ sudo dnf -y install codium
 # gnome extras
 sudo dnf -y install gnome-tweaks
 flatpak --user install com.mattjakeman.ExtensionManager -y
+flatpak --user override com.mattjakeman.ExtensionManager --share=network --talk-name=org.gnome.Shell.Extensions
 sudo dnf -y install gnome-firmware
 
 # fonts
@@ -427,33 +443,133 @@ sudo dnf -y install numix-icon-theme-circle
 gsettings set org.gnome.desktop.interface icon-theme 'Numix-Circle'
 
 # steam
-sudo dnf -y install steam steam-devices
+flatpak --user install com.valvesoftware.Steam com.valvesoftware.Steam.Utility.steamtinkerlaunch com.valvesoftware.Steam.CompatibilityTool.Proton-GE com.valvesoftware.Steam.Utility.InhibitScreensaver -y
+flatpak --user override com.valvesoftware.Steam --share=network --socket=pulseaudio
+flatpak --user install net.davidotek.pupgui2 -y
+flatpak --user override net.davidotek.pupgui2 --share=network
 
 # prism launcher (minecraft)
 flatpak --user install org.prismlauncher.PrismLauncher -y
+flatpak --user override org.prismlauncher.PrismLauncher --share=network --socket=pulseaudio
 
 # bleachbit
 sudo dnf -y install bleachbit
 
 # obs
-sudo dnf -y install obs-studio
+flatpak --user install com.obsproject.Studio com.obsproject.Studio.Plugin.InputOverlay com.obsproject.Studio.Plugin.Gstreamer com.obsproject.Studio.Plugin.GStreamerVaapi com.obsproject.Studio.Plugin.CompositeBlur com.obsproject.Studio.Plugin.BackgroundRemoval -y
+flatpak --user override com.obsproject.Studio --device=dri --socket=pulseaudio
+
+#  vlc
+flatpak --user install org.videolan.VLC org.videolan.VLC.Plugin.pause_click org.videolan.VLC.Plugin.makemkv org.videolan.VLC.Plugin.fdkaac org.videolan.VLC.Plugin.bdj -y
+flatpak --user override org.videolan.VLC --device=dri --share=network --socket=pulseaudio --nosocket=wayland --socket=fallback-x11
+
+# kodi
+flatpak --user install tv.kodi.Kodi -y
+flatpak --user override tv.kodi.Kodi --device=dri --share=network --socket=pulseaudio
+
+# makemkv
+flatpak --user install com.makemkv.MakeMKV -y
+flatpak --user override com.makemkv.MakeMKV --share=network
+
+# qbittorrent
+flatpak --user install org.qbittorrent.qBittorrent -y
+flatpak --user override org.qbittorrent.qBittorrent --share=network
 
 # AV
 sudo dnf -y install clamav clamav-freshclam clamtk
 
+# PGP
+sudo dnf -y install gnupg2 pinentry
+
 # flatseal
 flatpak --user install com.github.tchx84.Flatseal -y
+flatpak --user override com.github.tchx84.Flatseal --filesystem=/var/lib/flatpak/app:ro --filesystem=xdg-data/flatpak/app:ro --filesystem=xdg-data/flatpak/overrides:create
 
 # tor
 sudo dnf -y install tor torbrowser-launcher
 
-# java
-sudo dnf -y install java-1.8.0-openjdk
-sudo dnf -y install java-1.8.0-openjdk-devel
-sudo dnf -y install java-17-openjdk
-
 # signal
 flatpak --user install org.signal.Signal -y
+flatpak --user override org.signal.Signal --share=network --socket=pulseaudio
+# enable wayland
+flatpak --user override org.signal.Signal --env=ELECTRON_OZONE_PLATFORM_HINT=auto
+
+# cake wallet (disables hardened_malloc to unbreak, also enables network access)
+flatpak --user override com.cakewallet.CakeWallet --share=network --nofilesystem=host-os --unset-env=LD_PRELOAD
 
 # obsidian
 flatpak --user install md.obsidian.Obsidian -y
+flatpak --user override md.obsidian.Obsidian --share=network
+
+# dolphin
+flatpak --user install org.kde.dolphin -y
+flatpak --user override org.kde.dolphin --filesystem=host --filesystem=host-os --filesystem=host-etc --filesystem=home 
+
+# nautilus
+sudo dnf -y install gnome-terminal-nautilus seahorse-nautilus sushi
+
+# stacer
+sudo dnf -y install stacer
+
+# gnome web
+flatpak --user install org.gnome.Epiphany -y
+flatpak --user override org.gnome.Epiphany --share=network
+
+# inspector
+flatpak --user install io.github.nokse22.inspector -y
+flatpak --user override io.github.nokse22 --talk-name=org.freedesktop.Flatpak
+
+# replace useful built-in apps with flatpaks
+
+# gnome calculator
+sudo dnf -y remove gnome-calculator
+flatpak --user install org.gnome.Calculator -y
+
+# gnome camera
+sudo dnf -y remove snapshot
+flatpak --user install org.gnome.Snapshot -y
+
+# gnome clocks
+sudo dnf -y remove gnome-clocks
+flatpak --user install org.gnome.clocks -y
+
+# disk usage analyzer
+sudo dnf -y remove baobab
+flatpak --user install org.gnome.baobab -y
+
+# document scanner
+sudo dnf -y remove simple-scan
+flatpak --user install org.gnome.SimpleScan -y
+
+# fedora media writer
+sudo dnf -y remove mediawriter
+flatpak --user install org.fedoraproject.MediaWriter -y
+flatpak --user override org.fedoraproject.MediaWriter --share=network
+
+# file roller
+sudo dnf -y remove file-roller
+flatpak --user install org.gnome.FileRoller -y
+
+# gnome fonts
+sudo dnf -y remove gnome-font-viewer
+flatpak --user install org.gnome.font-viewer -y
+
+# logs
+sudo dnf -y remove gnome-logs
+flatpak --user install org.gnome.Logs -y
+
+# gnome text editor
+sudo dnf -y remove gnome-text-editor
+flatpak --user install org.gnome.TextEditor -y
+
+# libreoffice
+sudo dnf -y remove libreoffice-core
+flatpak --user install org.libreoffice.LibreOffice -y
+
+# gnome firmware
+sudo dnf -y remove gnome-firmware
+flatpak --user install org.gnome.Firmware -y
+
+# image viewer
+sudo dnf -y remove loupe
+flatpak --user install org.gnome.Loupe -y
