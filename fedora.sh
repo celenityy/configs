@@ -353,7 +353,6 @@ sudo dnf copr enable celenity/dove-policies -y
 sudo dnf -y update --refresh
 sudo dnf -y install dove-policies
 
-
 # codecs & media
 # https://docs.fedoraproject.org/en-US/quick-docs/installing-plugins-for-playing-movies-and-music/
 # https://itsfoss.com/things-to-do-after-installing-fedora/#5-install-multimedia-plugins
