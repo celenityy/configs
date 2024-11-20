@@ -28,8 +28,8 @@ echo 1 > /proc/sys/net/ipv4/conf/imq1/rp_filter
 echo 1 > /proc/sys/net/ipv4/conf/imq2/rp_filter
 echo 1 > /proc/sys/net/ipv4/conf/ip6_vti0/rp_filter
 echo 1 > /proc/sys/net/ipv4/conf/ip6gre0/rp_filter
-echo 1 > /proc/sys/net/ipv4/conf/ip6tn10/rp_filter
-echo 1 > /proc/sys/net/ipv4/conf/ip_vti10/rp_filter
+echo 1 > /proc/sys/net/ipv4/conf/ip6tnl0/rp_filter
+echo 1 > /proc/sys/net/ipv4/conf/ip_vti0/rp_filter
 echo 1 > /proc/sys/net/ipv4/conf/lo/rp_filter
 echo 1 > /proc/sys/net/ipv4/conf/sit0/rp_filter
 echo 1 > /proc/sys/net/ipv4/conf/spu_ds_dummy/rp_filter
@@ -70,8 +70,8 @@ echo 1 > /proc/sys/net/ipv4/conf/imq1/log_martians
 echo 1 > /proc/sys/net/ipv4/conf/imq2/log_martians
 echo 1 > /proc/sys/net/ipv4/conf/ip6_vti0/log_martians
 echo 1 > /proc/sys/net/ipv4/conf/ip6gre0/log_martians
-echo 1 > /proc/sys/net/ipv4/conf/ip6tn10/log_martians
-echo 1 > /proc/sys/net/ipv4/conf/ip_vti10/log_martians
+echo 1 > /proc/sys/net/ipv4/conf/ip6tnl0/log_martians
+echo 1 > /proc/sys/net/ipv4/conf/ip_vti0/log_martians
 echo 1 > /proc/sys/net/ipv4/conf/lo/log_martians
 echo 1 > /proc/sys/net/ipv4/conf/sit0/log_martians
 echo 1 > /proc/sys/net/ipv4/conf/spu_ds_dummy/log_martians
