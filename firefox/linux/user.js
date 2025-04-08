@@ -32,6 +32,7 @@ user_pref("signon.management.page.breach-alerts.enabled", false);
 
 /// Disable `Open with` dialog
 // Broken with Firejail
+// https://bugzilla.mozilla.org/1281959
 user_pref("browser.download.forbid_open_with", true);
 
 /// Disable strong password generation (if the Password Manager is enabled)
