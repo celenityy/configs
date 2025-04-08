@@ -139,8 +139,6 @@ user_pref("browser.celenity.status.osx", "successfully applied :D");
 // Useful for testing, but not much else...
 //
 
-/*** NOTE TO SELF: SET `modifyWebextFlavor` TO `+mobile` IN UBLOCK ORIGIN'S ADVANCED SETTINGS ***/
-
 /* INDEX 
 
 001: USER AGENT
