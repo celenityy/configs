@@ -6,6 +6,8 @@
 
 /*** NOTE TO SELF: REPLACE [XXXXXX] AT 001 ***/
 
+/*** PROFILE LOCATION: ~/.mozilla/firefox ***/
+
 /* INDEX 
 
 000: PHOENIX
