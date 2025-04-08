@@ -4,7 +4,7 @@
 // This is designed to be used WITH Phoenix: https://phoenix.celenity.dev
 // This includes my personal preferences; things that don't make sense to add to Phoenix for various reasons...
 
-/*** NOTE TO SELF: REPLACE [XXXXXX] AT 001 ***/
+/*** NOTE TO SELF: REPLACE [XXXXXX] AT 002 ***/
 
 /*** PROFILE LOCATION: ~/Library/Application Support/Firefox/Profiles ***/
 
