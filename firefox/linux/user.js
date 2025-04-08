@@ -52,10 +52,19 @@ user_pref("browser.celenity.status.linux", "001");
 
 /*** 002 DNS ***/
 
-/// Use NextDNS for DoH
+/// Configure built-in DoH providers
+// Adds my NextDNS config + removes:
+// AdGuard (Public) - Family Protection
+// Cloudflare - Adult Content/Malware Protection
+// DNS0 - Kids
+// Mullvad (All) - Ad/Tracking/Limited Malware/Social Media/Adult/Gambling Protection
+// Mullvad (Extended) - Ad/Tracking/Limited Malware/Social Media Protection
+// Mullvad (Family)
+user_pref("doh-rollout.provider-list", '[{"uri":"https://dns.quad9.net/dns-query","UIName":"Quad9 - Real-time Malware Protection","autoDefault":false},{"uri":"https://zero.dns0.eu","UIName":"DNS0 (ZERO) - Hardened Real-time Malware Protection","autoDefault":false},{"uri":"https://dns0.eu","UIName":"DNS0 - Real-time Malware Protection","autoDefault":false},{"uri":"https://base.dns.mullvad.net/dns-query","UIName":"Mullvad (Base) - Ad/Tracking/Limited Malware Protection","autoDefault":false},{"uri":"https://dns.adguard-dns.com/dns-query","UIName":"AdGuard (Public) - Ad/Tracking Protection","autoDefault":false},{"uri":"https://dns.mullvad.net/dns-query","UIName":"Mullvad - Unfiltered","autoDefault":false},{"uri":"https://wikimedia-dns.org/dns-query","UIName":"Wikimedia - Unfiltered","autoDefault":false},{"uri":"https://firefox.dns.nextdns.io/","UIName":"NextDNS (Public) - Unfiltered","autoDefault":false},{"uri":"https://unfiltered.adguard-dns.com/dns-query","UIName":"AdGuard (Public) - Unfiltered","autoDefault":false},{"uri":"https://security.cloudflare-dns.com/dns-query","UIName":"Cloudflare - Malware Protection","autoDefault":false},{"uri":"https://mozilla.cloudflare-dns.com/dns-query","UIName":"Cloudflare - Unfiltered (Stricter privacy policy)","autoDefault":false},{"uri":"https://firefox.dns.nextdns.io/[XXXXXX]/Linux","UIName":"NextDNS - Personal","autoDefault":true}]'); // [HIDDEN]
+
+/// Use NextDNS
 user_pref("network.trr.bootstrapAddr", "45.90.28.0");
-user_pref("network.trr.custom_uri", "https://dns.nextdns.io/[XXXXXX]/Linux");
-user_pref("network.trr.uri", "https://dns.nextdns.io/[XXXXXX]/Linux");
+user_pref("network.trr.uri", "https://firefox.dns.nextdns.io/[XXXXXX]/Linux");
 
 user_pref("browser.celenity.status.linux", "002");
 
