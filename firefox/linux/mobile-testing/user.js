@@ -33,8 +33,8 @@ user_pref("browser.celenity.status.linux", "000");
 user_pref("signon.management.page.breach-alerts.enabled", false);
 
 /// Disable `Open with` dialog
-// Broken with Firejail
 // https://bugzilla.mozilla.org/1281959
+// Broken with Firejail
 user_pref("browser.download.forbid_open_with", true);
 
 /// Disable strong password generation (if the Password Manager is enabled)
