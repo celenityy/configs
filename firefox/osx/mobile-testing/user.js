@@ -139,7 +139,7 @@ user_pref("browser.celenity.status.osx", "successfully applied :D");
 // Useful for testing, but not much else...
 //
 
-/*** NOTE TO SELF: SET `uiPopupConfig` TO `+logger` IN UBLOCK ORIGIN'S ADVANCED SETTINGS ***/
+/*** NOTE TO SELF: SET `uiPopupConfig` TO `+logger` IN UBLOCK ORIGIN'S ADVANCED SETTINGS TO ADD BACK LOGGER BUTTON ***/
 
 /* INDEX 
 
