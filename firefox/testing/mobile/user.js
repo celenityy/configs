@@ -4,6 +4,8 @@
 // Useful for testing, but not much else...
 //
 
+/*** NOTE TO SELF: SET `uiPopupConfig` TO `+logger` IN UBLOCK ORIGIN'S ADVANCED SETTINGS ***/
+
 /* INDEX 
 
 001: USER AGENT
