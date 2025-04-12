@@ -16,6 +16,7 @@
 003: PRIVACY
 004: DEBUGGING
 005: RESET PER SESSION
+006: TESTING
 
 */
 
@@ -35,6 +36,9 @@ user_pref("signon.management.page.breach-alerts.enabled", false);
 /// Disable strong password generation (if the Password Manager is enabled)
 // There are no privacy/security implications here, I'm just setting this to uncheck the box under `Passwords at `about:preferences#privacy`, as I don't use the built-in Password Manager...
 user_pref("signon.generation.enabled", false);
+
+/// Display PID & activeness when hovering over tabs
+user_pref("browser.tabs.tooltipsShowPidAndActiveness", true);
 
 /// Enable Dark Mode
 user_pref("layout.css.prefers-color-scheme.content-override", 0);
@@ -90,6 +94,7 @@ user_pref("devtools.browserconsole.enableNetworkMonitoring", true);
 user_pref("devtools.browserconsole.filter.net", true);
 user_pref("devtools.browserconsole.filter.netxhr", true);
 user_pref("devtools.browsertoolbox.scope", "everything");
+user_pref("devtools.debugger.pause-on-debugger-statement", false);
 user_pref("devtools.debugger.show-content-scripts", true);
 user_pref("devtools.webconsole.filter.net", true);
 user_pref("devtools.webconsole.filter.netxhr", true);
@@ -131,6 +136,17 @@ user_pref("network.http.referer.XOriginPolicy", 2);
 user_pref("privacy.sanitize.timeSpan", 0);
 
 user_pref("browser.celenity.status.osx", "005");
+
+/*** 006 RESET PER SESSION ***/
+
+// These are preferences I'm currently testing for various reasons, they may end up in Phoenix at some point
+
+user_pref("network.http.http3.use_nspr_for_io", false);
+user_pref("pdfjs.enableAltText", true);
+user_pref("pdfjs.enableAltTextForEnglish", true);
+user_pref("pdfjs.enableSignatureEditor", true);
+
+user_pref("browser.celenity.status.osx", "006");
 
 user_pref("browser.celenity.status.osx", "successfully applied :D");
 
