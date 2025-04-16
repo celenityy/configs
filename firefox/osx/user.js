@@ -75,10 +75,17 @@ user_pref("privacy.clearOnShutdown.cookies", true);
 user_pref("privacy.clearOnShutdown.offlineApps", true);
 user_pref("privacy.clearOnShutdown_v2.cookiesAndStorage", true);
 
-/// Disable remote FPP overrides
+/// Disable Remote FPP Overrides
 // This currently only disables canvas randomization for Google domains
 // https://firefox.settings.services.mozilla.com/v1/buckets/main/collections/fingerprinting-protection-overrides/changeset?_expected=0
 user_pref("privacy.fingerprintingProtection.remoteOverrides.enabled", false);
+
+/// Disable Remote Permissions
+// This currently only allows overrides for HTTPS First
+// https://searchfox.org/mozilla-central/source/extensions/permissions/docs/remote.rst
+// https://searchfox.org/mozilla-central/source/extensions/permissions/RemotePermissionService.sys.mjs
+// https://firefox.settings.services.mozilla.com/v1/buckets/main/collections/remote-permissions/changeset?_expected=0
+user_pref("permissions.manager.remote.enabled", false);
 
 /// Spoof locale to `en-US`
 user_pref("intl.accept_languages", "en-US, en"); // `Accept-Language` HTTP Header
