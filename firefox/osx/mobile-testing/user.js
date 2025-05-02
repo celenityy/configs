@@ -47,6 +47,10 @@ user_pref("layout.css.prefers-color-scheme.content-override", 0);
 // Firefox seems to ignore this unless it's specified here on the user level...
 user_pref("general.smoothScroll", true);
 
+/// Use stricter media autoplay blocking
+// Default = 0
+user_pref("media.autoplay.blocking_policy", 2);
+
 user_pref("browser.celenity.status.osx", "001");
 
 /*** 002 DNS ***/
@@ -151,7 +155,6 @@ user_pref("browser.celenity.status.osx", "005");
 user_pref("network.http.http3.use_nspr_for_io", false);
 user_pref("pdfjs.enableAltText", true);
 user_pref("pdfjs.enableAltTextForEnglish", true);
-user_pref("pdfjs.enableSignatureEditor", true);
 
 user_pref("browser.celenity.status.osx", "006");
 
