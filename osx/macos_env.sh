@@ -343,22 +343,6 @@ echo_green_text "Loading dev.celenity.env.HOMEBREW_VERBOSE.plist..."
 /bin/launchctl load /Library/LaunchAgents/dev.celenity.env.HOMEBREW_VERBOSE.plist || error_fn
 echo
 
-echo_green_text "Downloading dev.celenity.env.HOMEBREW_VERIFY_ATTESTATIONS.plist..."
-curl --cert-status --doh-cert-status --no-insecure --no-proxy-insecure --no-sessionid --no-ssl --no-ssl-allow-beast --no-ssl-auto-client-cert --no-ssl-no-revoke --no-ssl-revoke-best-effort --proto -all,https --proto-default https --proto-redir -all,https --show-error -O -sSL https://gitlab.com/celenityy/configs/-/raw/pages/osx/System/Library/LaunchAgents/dev.celenity.env.HOMEBREW_VERIFY_ATTESTATIONS.plist || error_fn
-echo
-
-echo_green_text "Changing permissions of dev.celenity.env.HOMEBREW_VERIFY_ATTESTATIONS.plist to 644..."
-sudo /bin/chmod -v 644 dev.celenity.env.HOMEBREW_VERIFY_ATTESTATIONS.plist || error_fn
-echo
-
-echo_green_text "Copying dev.celenity.env.HOMEBREW_VERIFY_ATTESTATIONS.plist to /Library/LaunchAgents/dev.celenity.env.HOMEBREW_VERIFY_ATTESTATIONS.plist..."
-sudo /bin/cp dev.celenity.env.HOMEBREW_VERIFY_ATTESTATIONS.plist /Library/LaunchAgents/dev.celenity.env.HOMEBREW_VERIFY_ATTESTATIONS.plist || error_fn
-echo
-
-echo_green_text "Loading dev.celenity.env.HOMEBREW_VERIFY_ATTESTATIONS.plist..."
-/bin/launchctl load /Library/LaunchAgents/dev.celenity.env.HOMEBREW_VERIFY_ATTESTATIONS.plist || error_fn
-echo
-
 echo_green_text "Downloading dev.celenity.env.JavaScriptCoreUseJIT.plist..."
 curl --cert-status --doh-cert-status --no-insecure --no-proxy-insecure --no-sessionid --no-ssl --no-ssl-allow-beast --no-ssl-auto-client-cert --no-ssl-no-revoke --no-ssl-revoke-best-effort --proto -all,https --proto-default https --proto-redir -all,https --show-error -O -sSL https://gitlab.com/celenityy/configs/-/raw/pages/osx/System/Library/LaunchAgents/dev.celenity.env.JavaScriptCoreUseJIT.plist || error_fn
 echo
