@@ -29,6 +29,9 @@ user_pref("browser.celenity.status.osx.element", "000");
 
 /*** 001 UX ***/
 
+/// Add `element.unredacted.org` to `about:home`
+user_pref("browser.newtabpage.pinned", '[{"url":"https://element.unredacted.org/#/home","label":"redacted.org"},{"url":"https://app.element.io/#/home","label":"element.io"}]');
+
 /// Disable alerts for breached passwords (if the Password Manager is enabled)
 // There are no privacy/security implications here, I'm just setting this to uncheck the box under `Passwords at `about:preferences#privacy`, as I don't use the built-in Password Manager...
 user_pref("signon.management.page.breach-alerts.enabled", false);
