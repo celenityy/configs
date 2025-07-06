@@ -61,7 +61,6 @@ user_pref("browser.celenity.status.linux", "001");
 
 /// Use NextDNS
 user_pref("network.trr.bootstrapAddr", "45.90.28.0");
-user_pref("network.trr.custom_uri", "https://firefox.dns.nextdns.io/[XXXXXX]/Linux");
 user_pref("network.trr.uri", "https://firefox.dns.nextdns.io/[XXXXXX]/Linux");
 
 user_pref("browser.celenity.status.linux", "002");
