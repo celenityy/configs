@@ -22,8 +22,8 @@
 
 /*** 000 PHOENIX ***/
 
-/// Use Phoenix Extended (w/ Firefox-UI-Fix)
-user_pref("autoadmin.global_config_url", "file:///opt/homebrew/opt/phoenix-osx/configs/ui-fix/hardened.cfg");
+/// Use Phoenix Extended
+user_pref("autoadmin.global_config_url", "file:///opt/homebrew/opt/phoenix-osx/configs/hardened.cfg");
 
 user_pref("browser.celenity.status.osx", "000");
 
@@ -32,6 +32,10 @@ user_pref("browser.celenity.status.osx", "000");
 /// Disable alerts for breached passwords (if the Password Manager is enabled)
 // There are no privacy/security implications here, I'm just setting this to uncheck the box under `Passwords at `about:preferences#privacy`, as I don't use the built-in Password Manager...
 user_pref("signon.management.page.breach-alerts.enabled", false);
+
+/// Disable custom CSS
+// I currently just don't use/need this
+user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", false);
 
 /// Disable strong password generation (if the Password Manager is enabled)
 // There are no privacy/security implications here, I'm just setting this to uncheck the box under `Passwords at `about:preferences#privacy`, as I don't use the built-in Password Manager...
@@ -70,22 +74,8 @@ user_pref("privacy.clearOnShutdown.cookies", true);
 user_pref("privacy.clearOnShutdown.offlineApps", true);
 user_pref("privacy.clearOnShutdown_v2.cookiesAndStorage", true);
 
-/// Disable Remote FPP Overrides
-// This currently only disables canvas randomization for Google domains
-// https://firefox.settings.services.mozilla.com/v1/buckets/main/collections/fingerprinting-protection-overrides/changeset?_expected=0
-user_pref("privacy.fingerprintingProtection.remoteOverrides.enabled", false);
-
-/// Disable Remote Permissions
-// This currently only allows overrides for HTTPS First
-// https://searchfox.org/mozilla-central/source/extensions/permissions/docs/remote.rst
-// https://searchfox.org/mozilla-central/source/extensions/permissions/RemotePermissionService.sys.mjs
-// https://firefox.settings.services.mozilla.com/v1/buckets/main/collections/remote-permissions/changeset?_expected=0
-user_pref("permissions.manager.remote.enabled", false);
-
 /// Spoof locale to `en-US`
-user_pref("intl.accept_languages", "en-US, en"); // `Accept-Language` HTTP Header
-user_pref("privacy.fingerprintingProtection.overrides", "+AllTargets,-CanvasExtractionBeforeUserInputIsBlocked,-CSSPrefersColorScheme,-FrameRate"); // Internationalization API (removes -JSLocale)
-user_pref("privacy.spoof_english", 2); // Currently only works with RFP, at least on desktop - https://bugzilla.mozilla.org/show_bug.cgi?id=1957553
+user_pref("privacy.spoof_english", 2);
 
 user_pref("browser.celenity.status.osx", "003");
 
@@ -95,14 +85,8 @@ user_pref("browser.celenity.status.osx", "003");
 user_pref("devtools.browserconsole.enableNetworkMonitoring", true);
 user_pref("devtools.browserconsole.filter.net", true);
 user_pref("devtools.browserconsole.filter.netxhr", true);
-user_pref("devtools.browsertoolbox.scope", "everything");
-user_pref("devtools.debugger.pause-on-debugger-statement", false);
-user_pref("devtools.debugger.show-content-scripts", true);
 user_pref("devtools.webconsole.filter.net", true);
 user_pref("devtools.webconsole.filter.netxhr", true);
-
-/// Enable `about:home` developer tools
-user_pref("browser.newtabpage.activity-stream.asrouter.devtoolsEnabled", true);
 
 user_pref("browser.celenity.status.osx", "004");
 
@@ -125,6 +109,10 @@ user_pref("javascript.options.wasm", false);
 user_pref("privacy.fingerprintingProtection", true);
 user_pref("privacy.fingerprintingProtection.pbmode", true); // [DEFAULT - non-Thunderbird]
 
+/// Findbar
+user_pref("findbar.entireword", false);
+user_pref("findbar.highlightAll", true);
+
 /// Hard-fail OCSP revocation checks
 // Significant security improvement
 // https://github.com/arkenfox/user.js/issues/1576
@@ -138,16 +126,6 @@ user_pref("network.http.referer.XOriginPolicy", 2);
 user_pref("privacy.sanitize.timeSpan", 0);
 
 user_pref("browser.celenity.status.osx", "005");
-
-/*** 006 RESET PER SESSION ***/
-
-// These are preferences I'm currently testing for various reasons, they may end up in Phoenix at some point
-
-user_pref("network.http.http3.use_nspr_for_io", false);
-user_pref("pdfjs.enableAltText", true);
-user_pref("pdfjs.enableAltTextForEnglish", true);
-
-user_pref("browser.celenity.status.osx", "006");
 
 user_pref("browser.celenity.status.osx", "successfully applied :D");
 
@@ -167,7 +145,7 @@ user_pref("browser.celenity.status.osx", "successfully applied :D");
 /*** 001 USER AGENT ***/
 
 // Spoof user agent to Android
-user_pref("general.useragent.override", "Mozilla/5.0 (Android 10; Mobile; rv:137.0) Gecko/137.0 Firefox/137.0"); // [HIDDEN]
+user_pref("general.useragent.override", "Mozilla/5.0 (Android 10; Mobile; rv:140.0) Gecko/140.0 Firefox/140.0"); // [HIDDEN]
 user_pref("privacy.fingerprintingProtection.overrides", "+AllTargets,-CanvasExtractionBeforeUserInputIsBlocked,-CSSPrefersColorScheme,-FrameRate,-HttpUserAgent,-NavigatorUserAgent"); // Prevent FPP from overriding `general.useragent.override`
 
 user_pref("browser.celenity.status.mobile", "001");
