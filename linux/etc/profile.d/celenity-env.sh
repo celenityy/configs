@@ -1,4 +1,3 @@
-#!/bin/sh
 
 # Always enable VA-API
 ## Taken from Brace (AGPL-3.0-or-later): https://codeberg.org/divested/brace
@@ -41,7 +40,9 @@ export GJS_ENABLE_PROFILER=0;
 
 # Disable telemetry (for various software)
 ## DO_NOT_TRACK: https://consoledonottrack.com/
+export ASTRO_TELEMETRY_DISABLED=1;
 export AZURE_CORE_COLLECT_TELEMETRY=0;
+export DISABLE_TELEMETRY=1;
 export DO_NOT_TRACK=1;
 export DOTNET_CLI_TELEMETRY_OPTOUT=1;
 export GATSBY_TELEMETRY_DISABLED=1;

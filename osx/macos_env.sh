@@ -23,6 +23,22 @@ cd /tmp
 echo_green_text "Welcome!"
 echo_red_text "This script will set up environment variables I use on macOS."
 
+echo_green_text "Downloading dev.celenity.env.ASTRO_TELEMETRY_DISABLED.plist..."
+curl --cert-status --doh-cert-status --no-insecure --no-proxy-insecure --no-sessionid --no-ssl --no-ssl-allow-beast --no-ssl-auto-client-cert --no-ssl-no-revoke --no-ssl-revoke-best-effort --proto -all,https --proto-default https --proto-redir -all,https --show-error -O -sSL https://gitlab.com/celenityy/configs/-/raw/pages/osx/System/Library/LaunchAgents/dev.celenity.env.ASTRO_TELEMETRY_DISABLED.plist || error_fn
+echo
+
+echo_green_text "Changing permissions of dev.celenity.env.ASTRO_TELEMETRY_DISABLED.plist to 644..."
+/usr/bin/sudo /bin/chmod -v 644 dev.celenity.env.ASTRO_TELEMETRY_DISABLED.plist || error_fn
+echo
+
+echo_green_text "Copying dev.celenity.env.ASTRO_TELEMETRY_DISABLED.plist to /Library/LaunchAgents/dev.celenity.env.ASTRO_TELEMETRY_DISABLED.plist..."
+/usr/bin/sudo /bin/cp dev.celenity.env.ASTRO_TELEMETRY_DISABLED.plist /Library/LaunchAgents/dev.celenity.env.ASTRO_TELEMETRY_DISABLED.plist || error_fn
+echo
+
+echo_green_text "Loading dev.celenity.env.ASTRO_TELEMETRY_DISABLED.plist..."
+/bin/launchctl load /Library/LaunchAgents/dev.celenity.env.ASTRO_TELEMETRY_DISABLED.plist || error_fn
+echo
+
 echo_green_text "Downloading dev.celenity.env.AZURE_CORE_COLLECT_TELEMETRY.plist..."
 curl --cert-status --doh-cert-status --no-insecure --no-proxy-insecure --no-sessionid --no-ssl --no-ssl-allow-beast --no-ssl-auto-client-cert --no-ssl-no-revoke --no-ssl-revoke-best-effort --proto -all,https --proto-default https --proto-redir -all,https --show-error -O -sSL https://gitlab.com/celenityy/configs/-/raw/pages/osx/System/Library/LaunchAgents/dev.celenity.env.AZURE_CORE_COLLECT_TELEMETRY.plist || error_fn
 echo
@@ -53,6 +69,22 @@ echo
 
 echo_green_text "Loading dev.celenity.env.CPPFLAGS.plist..."
 /bin/launchctl load /Library/LaunchAgents/dev.celenity.env.CPPFLAGS.plist || error_fn
+echo
+
+echo_green_text "Downloading dev.celenity.env.DISABLE_TELEMETRY.plist..."
+curl --cert-status --doh-cert-status --no-insecure --no-proxy-insecure --no-sessionid --no-ssl --no-ssl-allow-beast --no-ssl-auto-client-cert --no-ssl-no-revoke --no-ssl-revoke-best-effort --proto -all,https --proto-default https --proto-redir -all,https --show-error -O -sSL https://gitlab.com/celenityy/configs/-/raw/pages/osx/System/Library/LaunchAgents/dev.celenity.env.DISABLE_TELEMETRY.plist || error_fn
+echo
+
+echo_green_text "Changing permissions of dev.celenity.env.DISABLE_TELEMETRY.plist to 644..."
+/usr/bin/sudo /bin/chmod -v 644 dev.celenity.env.DISABLE_TELEMETRY.plist || error_fn
+echo
+
+echo_green_text "Copying dev.celenity.env.DISABLE_TELEMETRY.plist to /Library/LaunchAgents/dev.celenity.env.DISABLE_TELEMETRY.plist..."
+/usr/bin/sudo /bin/cp dev.celenity.env.DISABLE_TELEMETRY.plist /Library/LaunchAgents/dev.celenity.env.DISABLE_TELEMETRY.plist || error_fn
+echo
+
+echo_green_text "Loading dev.celenity.env.DISABLE_TELEMETRY.plist..."
+/bin/launchctl load /Library/LaunchAgents/dev.celenity.env.DISABLE_TELEMETRY.plist || error_fn
 echo
 
 echo_green_text "Downloading dev.celenity.env.DO_NOT_TRACK.plist..."
