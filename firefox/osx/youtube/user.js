@@ -23,7 +23,7 @@
 /*** 000 PHOENIX ***/
 
 /// Use Phoenix's YouTube specialized config
-user_pref("autoadmin.global_config_url", "file:///opt/homebrew/opt/phoenix-osx/configs/youtube.cfg");
+user_pref("autoadmin.global_config_url", "file:///opt/homebrew/opt/phoenix-osx/configs/ui-fix/youtube.cfg");
 
 user_pref("browser.celenity.status.osx.youtube", "000");
 

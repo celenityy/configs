@@ -23,7 +23,7 @@
 /*** 000 PHOENIX ***/
 
 /// Use Phoenix's Discord specialized config
-user_pref("autoadmin.global_config_url", "file:///etc/firefox/phoenix/configs/discord.cfg");
+user_pref("autoadmin.global_config_url", "file:///etc/firefox/phoenix/configs/ui-fix/discord.cfg");
 
 user_pref("browser.celenity.status.linux.discord", "000");
 

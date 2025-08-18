@@ -23,7 +23,7 @@
 /*** 000 PHOENIX ***/
 
 /// Use Phoenix Extended
-user_pref("autoadmin.global_config_url", "file:///opt/homebrew/opt/phoenix-osx/configs/hardened.cfg");
+user_pref("autoadmin.global_config_url", "file:///opt/homebrew/opt/phoenix-osx/configs/ui-fix/hardened.cfg");
 
 user_pref("browser.celenity.status.osx", "000");
 

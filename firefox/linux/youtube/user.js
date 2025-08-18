@@ -23,7 +23,7 @@
 /*** 000 PHOENIX ***/
 
 /// Use Phoenix's YouTube specialized config
-user_pref("autoadmin.global_config_url", "file:///etc/firefox/phoenix/configs/youtube.cfg");
+user_pref("autoadmin.global_config_url", "file:///etc/firefox/phoenix/configs/ui-fix/youtube.cfg");
 
 user_pref("browser.celenity.status.linux.youtube", "000");
 

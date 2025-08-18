@@ -23,7 +23,7 @@
 /*** 000 PHOENIX ***/
 
 /// Use Phoenix's Twitter specialized config
-user_pref("autoadmin.global_config_url", "file:///opt/homebrew/opt/phoenix-osx/configs/twitter.cfg");
+user_pref("autoadmin.global_config_url", "file:///opt/homebrew/opt/phoenix-osx/configs/ui-fix/twitter.cfg");
 
 user_pref("browser.celenity.status.osx.twitter", "000");
 

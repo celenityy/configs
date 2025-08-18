@@ -23,7 +23,7 @@
 /*** 000 PHOENIX ***/
 
 /// Use Phoenix's Discord specialized config
-user_pref("autoadmin.global_config_url", "file:///opt/homebrew/opt/phoenix-osx/configs/discord.cfg");
+user_pref("autoadmin.global_config_url", "file:///opt/homebrew/opt/phoenix-osx/configs/ui-fix/discord.cfg");
 
 user_pref("browser.celenity.status.osx.discord", "000");
 

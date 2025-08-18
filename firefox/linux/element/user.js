@@ -23,7 +23,7 @@
 /*** 000 PHOENIX ***/
 
 /// Use Phoenix's Element specialized config
-user_pref("autoadmin.global_config_url", "file:///etc/firefox/phoenix/configs/element.cfg");
+user_pref("autoadmin.global_config_url", "file:///etc/firefox/phoenix/configs/ui-fix/element.cfg");
 
 user_pref("browser.celenity.status.linux.element", "000");
 
