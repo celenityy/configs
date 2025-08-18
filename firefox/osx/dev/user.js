@@ -36,10 +36,6 @@ user_pref("browser.newtabpage.pinned", '[{"url":"https://codeberg.org/","label":
 // There are no privacy/security implications here, I'm just setting this to uncheck the box under `Passwords at `about:preferences#privacy`, as I don't use the built-in Password Manager...
 user_pref("signon.management.page.breach-alerts.enabled", false);
 
-/// Disable custom CSS
-// I currently just don't use/need this
-user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", false);
-
 /// Disable strong password generation (if the Password Manager is enabled)
 // There are no privacy/security implications here, I'm just setting this to uncheck the box under `Passwords at `about:preferences#privacy`, as I don't use the built-in Password Manager...
 user_pref("signon.generation.enabled", false);

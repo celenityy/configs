@@ -33,10 +33,6 @@ user_pref("browser.celenity.status.linux", "000");
 // There are no privacy/security implications here, I'm just setting this to uncheck the box under `Passwords at `about:preferences#privacy`, as I don't use the built-in Password Manager...
 user_pref("signon.management.page.breach-alerts.enabled", false);
 
-/// Disable custom CSS
-// I currently just don't use/need this
-user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", false);
-
 /// Disable strong password generation (if the Password Manager is enabled)
 // There are no privacy/security implications here, I'm just setting this to uncheck the box under `Passwords at `about:preferences#privacy`, as I don't use the built-in Password Manager...
 user_pref("signon.generation.enabled", false);
@@ -138,15 +134,24 @@ user_pref("browser.celenity.status.linux", "successfully applied :D");
 /* INDEX 
 
 001: USER AGENT
+002: FIREFOX SYNC
 
 */
 
 /*** 001 USER AGENT ***/
 
 // Spoof user agent to Android
-user_pref("general.useragent.override", "Mozilla/5.0 (Android 10; Mobile; rv:140.0) Gecko/140.0 Firefox/140.0"); // [HIDDEN]
+user_pref("general.useragent.override", "Mozilla/5.0 (Android 10; Mobile; rv:141.0) Gecko/141.0 Firefox/141.0"); // [HIDDEN]
 user_pref("privacy.fingerprintingProtection.overrides", "+AllTargets,-CanvasExtractionBeforeUserInputIsBlocked,-CSSPrefersColorScheme,-FrameRate,-HttpUserAgent,-NavigatorUserAgent"); // Prevent FPP from overriding `general.useragent.override`
 
 user_pref("browser.celenity.status.mobile", "001");
+
+/*** 002 FIREFOX SYNC ***/
+
+// Disable Firefox Sync
+user_pref("identity.fxaccounts.enabled", false);
+user_pref("identity.fxaccounts.toolbar.defaultVisible", false);
+
+user_pref("browser.celenity.status.mobile", "002");
 
 user_pref("browser.celenity.status.mobile", "successfully applied :D");
