@@ -108,11 +108,6 @@ user_pref("privacy.fingerprintingProtection.pbmode", true); // [DEFAULT - non-Th
 user_pref("findbar.entireword", false);
 user_pref("findbar.highlightAll", true);
 
-/// Hard-fail OCSP revocation checks
-// Significant security improvement
-// https://github.com/arkenfox/user.js/issues/1576
-user_pref("security.OCSP.require", true);
-
 /// Set default time range when manually clearing data to "everything"
 user_pref("privacy.sanitize.timeSpan", 0);
 
