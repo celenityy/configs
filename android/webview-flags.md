@@ -1,3 +1,5 @@
+# webview-flags
+
 ```sh
 adb shell am start -a "com.android.webview.SHOW_DEV_UI"
 ```
@@ -6,17 +8,13 @@ adb shell am start -a "com.android.webview.SHOW_DEV_UI"
 
 `site-per-process` -> `Enabled`
 
-`OptimizeLoadingDataUrls` -> `Enabled`
-
-`WebViewExtraHeadersSameOriginOnly` -> `Enabled`
-
 `WebViewAccelerateSmallCanvases` -> `Enabled`
 
 `WebViewMixedContentAutoupgrades` -> `Enabled`
 
 `GMSCoreEmoji` -> `Disabled`
 
-`AutofillEnableLoyaltyCardsFilling` -> `Disabled`
+`AutofillEnableLoyaltyCardsFilling` -> `Disabled` *(This uses Google Wallet)*
 
 `AutofillUKMExperimentalFields` -> `Disabled`
 
@@ -62,11 +60,7 @@ adb shell am start -a "com.android.webview.SHOW_DEV_UI"
 
 `PartitionAllocMemoryReclaimer` -> `Enabled`
 
-`BackForwardCacheMediaSessionService` -> `Disabled`
-
 `WebViewAutoSAA` -> `Disabled`
-
-`WebViewSupervisedUserSiteBlock` -> `Disabled`
 
 `UseRustJsonParser` -> `Enabled`
 
@@ -94,8 +88,6 @@ adb shell am start -a "com.android.webview.SHOW_DEV_UI"
 
 `EnableHangWatcher` -> `Disabled`
 
-`MetricsTracingCalculationReduction` -> `Enabled`
-
 `WebViewDisableCHIPS` -> `Disabled`
 
 `DIPS` -> `Enabled`
@@ -106,7 +98,27 @@ adb shell am start -a "com.android.webview.SHOW_DEV_UI"
 
 `FetchLaterAPI` -> `Disabled`
 
+`Prerender2FallbackPrefetchSpecRules` -> `Disabled`
+
+`PreloadLinkRelDataUrls` -> `Disabled`
+
+`PrefetchServiceWorker` -> `Disabled`
+
+`OptimizeHTMLElementUrls` -> `Enabled`
+
 `SharedStorageAPI` -> `Disabled`
+
+`HttpCacheNoVarySearch` -> `Disabled`
+
+`PartitionAllocWithAdvancedChecks` -> `Enabled` *([some info](https://groups.google.com/a/chromium.org/g/ios-reviews/c/BY-Xq_Zeds8)*
+
+`SensitiveContent` -> `Enabled` *([info](https://source.chromium.org/chromium/chromium/src/+/main:components/sensitive_content/))*
+
+`RestrictAbusePortsOnLocalhost` -> `Enabled`
+
+`SharedDictionaryCache` -> `Disabled`
+
+`CacheSharingForPervasiveScripts` -> `Disabled`
 
 ## for devices without google play services:
 
