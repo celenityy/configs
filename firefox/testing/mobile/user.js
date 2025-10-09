@@ -16,7 +16,7 @@
 /*** 001 USER AGENT ***/
 
 // Spoof user agent to Android
-user_pref("general.useragent.override", "Mozilla/5.0 (Android 10; Mobile; rv:141.0) Gecko/141.0 Firefox/141.0"); // [HIDDEN]
+user_pref("general.useragent.override", "Mozilla/5.0 (Android 10; Mobile; rv:143.0) Gecko/143.0 Firefox/143.0"); // [HIDDEN]
 user_pref("privacy.fingerprintingProtection.overrides", "+AllTargets,-CanvasExtractionBeforeUserInputIsBlocked,-CSSPrefersColorScheme,-FrameRate,-HttpUserAgent,-NavigatorUserAgent"); // Prevent FPP from overriding `general.useragent.override`
 
 user_pref("browser.celenity.status.mobile", "001");
