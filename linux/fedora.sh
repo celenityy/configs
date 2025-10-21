@@ -247,8 +247,6 @@ sudo dnf -y remove fedora-bookmarks fedora-chromium-config '*anthy*' '*hangul*' 
 # kill unnecessary services
 services=(
     gssproxy.service
-    pcscd.service
-    pcscd.socket
     abrtd.service
     abrt-journal-core.service
     abrt-oops.service
