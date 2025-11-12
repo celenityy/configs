@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"extensions": {
+		"recommendations": [
+    		"Catppuccin.catppuccin-vsc",
+			"eamodio.gitlens",
+			"ms-python.python",
+			"ms-toolsai.jupyter",
+			"redhat.java",
+			"TakumiI.markdowntable",
+			"tombonnike.vscode-status-bar-format-toggle",
+			"yandeu.five-server"
+  		]	
+	},
+	"settings": {}
+}
