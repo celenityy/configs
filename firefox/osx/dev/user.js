@@ -16,7 +16,7 @@
 003: PRIVACY
 004: DEBUGGING
 005: RESET PER SESSION
-006: TESTING
+006: MISC.
 
 */
 
@@ -119,5 +119,12 @@ user_pref("network.http.referer.XOriginPolicy", 2);
 user_pref("privacy.sanitize.timeSpan", 0);
 
 user_pref("browser.celenity.status.osx", "005");
+
+/*** 006 MISC. ***/
+
+/// Set default permissions
+user_pref("permissions.manager.defaultsUrl", "file:///Users/user/firefox/dev/permissions");
+
+user_pref("browser.celenity.status.osx", "006");
 
 user_pref("browser.celenity.status.osx", "successfully applied :D");
