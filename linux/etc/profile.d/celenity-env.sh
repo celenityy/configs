@@ -77,9 +77,11 @@ export SB_GAPI_KEY_FILE='/home/user/IronFox/sb-gapi.data';
 # export GPG_TTY=$(tty);
 
 # Aliases
-alias envedit='/usr/bin/run0 /usr/bin/nano ~/.bashrc';
-# alias envedit='/usr/bin/nano ~/.bashrc';
-alias envup='source ~/.bashrc';
+alias envedit='/usr/bin/run0edit /etc/profile.d/celenity-env.sh'
+# alias envedit='/usr/bin/run0edit /home/user/.bashrc';
+# alias envedit='/usr/bin/nano /home/user/.bashrc';
+alias envup='source /etc/profile.d/celenity-env.sh';
+# alias envup='source /home/user/.bashrc';
 alias firefox='/usr/bin/ujust with-standard-malloc /opt/firefox/firefox';
 alias git-up='/usr/bin/git commit -am 'Update' && git push';
 alias gits='/usr/bin/git commit --signoff';
