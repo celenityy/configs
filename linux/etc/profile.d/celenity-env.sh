@@ -82,5 +82,5 @@ alias envedit='/usr/bin/run0 /usr/bin/nano ~/.bashrc';
 alias envup='source ~/.bashrc';
 alias git-up='/usr/bin/git commit -am 'Update' && git push';
 alias gits='/usr/bin/git commit --signoff';
-alias update='/usr/bin/rpm-ostree upgrade && /usr/bin/run0 /usr/bin/bash /opt/celenity/scripts/update_firefox.sh && /usr/bin/run0 /usr/bin/bash /opt/celenity/scripts/update_thunderbird.sh && /usr/bin/flatpak --system update && /usr/bin/flatpak --user update && /usr/bin/fwupdmgr refresh --force && /usr/bin/fwupdmgr upgrade';
+alias update='/usr/bin/rpm-ostree refresh-md --force && /usr/bin/rpm-ostree upgrade && /usr/bin/run0 /usr/bin/bash /opt/celenity/scripts/update_firefox.sh && /usr/bin/run0 /usr/bin/bash /opt/celenity/scripts/update_thunderbird.sh && /usr/bin/flatpak --system update && /usr/bin/flatpak --user update && /usr/bin/fwupdmgr refresh --force && /usr/bin/fwupdmgr upgrade';
 #alias update='/usr/bin/sudo /usr/bin/dnf update --refresh && /usr/bin/sudo /usr/bin/bash /opt/celenity/scripts/update_firefox.sh && /usr/bin/sudo /usr/bin/bash /opt/celenity/scripts/update_thunderbird.sh && /usr/bin/flatpak --system update && /usr/bin/flatpak --user update && /usr/bin/fwupdmgr refresh --force && /usr/bin/fwupdmgr upgrade';
