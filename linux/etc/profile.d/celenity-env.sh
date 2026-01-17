@@ -1,17 +1,24 @@
 
+# Configurations
+FIREFOX_ENVS='MOZ_CRASHREPORTER="" MOZ_CRASHREPORTER_DISABLE=1 MOZ_CRASHREPORTER_NO_REPORT=1 MOZ_CRASHREPORTER_URL="data;" MOZ_DISABLE_ASAN_REPORTER=1 MOZ_ENABLE_WAYLAND=1 SSLKEYLOGFILE=""';
+
+# Paths
+FIREFOX_PATH="/usr/bin/bubblejail run -- firefox /usr/bin/env ${FIREFOX_ENVS} /usr/bin/ujust with-standard-malloc /opt/firefox/firefox";
+THUNDERBIRD_PATH="/usr/bin/bubblejail run -- thunderbird /usr/bin/env ${FIREFOX_ENVS} MOZ_REMOTE_SETTINGS_DEVTOOLS=1 /usr/bin/ujust with-standard-malloc /opt/thunderbird/thunderbird";
+
 # Always enable VA-API
 ## Taken from Brace (AGPL-3.0-or-later): https://codeberg.org/divested/brace
 export GST_VAAPI_ALL_DRIVERS=1;
 
 # Configure defaults
-export BROWSER='/opt/firefox/firefox -P default-release';
+export BROWSER="${FIREFOX_PATH}";
 export EDITOR='/usr/bin/nano';
 export VISUAL='/usr/bin/nano';
 
 # Configure Homebrew (if installed)
 export HOMEBREW_ASK=1;
 export HOMEBREW_AUTO_UPDATE_SECS=3600;
-export HOMEBREW_BROWSER='/opt/firefox/firefox -P default-release';
+export HOMEBREW_BROWSER="${FIREFOX_PATH}";
 export HOMEBREW_CASK_OPTS='--require-sha';
 #export HOMEBREW_CURLRC="~/.curlrc";
 export HOMEBREW_DISPLAY_INSTALL_TIMES=1;
@@ -82,9 +89,11 @@ alias envedit='/usr/bin/run0edit /etc/profile.d/celenity-env.sh'
 # alias envedit='/usr/bin/nano /home/user/.bashrc';
 alias envup='source /etc/profile.d/celenity-env.sh';
 # alias envup='source /home/user/.bashrc';
-alias firefox='/usr/bin/ujust with-standard-malloc /opt/firefox/firefox';
+alias firefox="${FIREFOX_PATH}";
+# alias firefox='/usr/bin/ujust with-standard-malloc /opt/firefox/firefox';
 alias git-up='/usr/bin/git commit -am 'Update' && git push';
 alias gits='/usr/bin/git commit --signoff';
-alias thunderbird='MOZ_REMOTE_SETTINGS_DEVTOOLS=1 /usr/bin/ujust with-standard-malloc /opt/thunderbird/thunderbird';
+alias thunderbird="${THUNDERBIRD_PATH}";
+# alias thunderbird='MOZ_REMOTE_SETTINGS_DEVTOOLS=1 /usr/bin/ujust with-standard-malloc /opt/thunderbird/thunderbird';
 alias update='/usr/bin/rpm-ostree refresh-md --force && /usr/bin/ujust update-system && /home/linuxbrew/.linuxbrew/bin/brew update --force --verbose && /home/linuxbrew/.linuxbrew/bin/brew upgrade --greedy --verbose && /usr/bin/run0 /usr/bin/bash /opt/celenity/scripts/update_firefox.sh && /usr/bin/run0 /usr/bin/bash /opt/celenity/scripts/update_thunderbird.sh && /usr/bin/flatpak --system update && /usr/bin/flatpak --user update && /usr/bin/ujust update-firmware';
 #alias update='/usr/bin/sudo /usr/bin/dnf update --refresh && /usr/bin/sudo /usr/bin/bash /opt/celenity/scripts/update_firefox.sh && /usr/bin/sudo /usr/bin/bash /opt/celenity/scripts/update_thunderbird.sh && /usr/bin/flatpak --system update && /usr/bin/flatpak --user update && /usr/bin/fwupdmgr refresh --force && /usr/bin/fwupdmgr upgrade';
