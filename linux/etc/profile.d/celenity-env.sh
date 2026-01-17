@@ -35,7 +35,7 @@ export GJS_DISABLE_JIT=1;
 # Disable JIT (WebKit)
 ## https://trac.webkit.org/wiki/EnvironmentVariables
 export JavaScriptCoreUseJIT=0;
-export JSC_useFTLJI=0;
+export JSC_useFTLJIT=0;
 
 # Disable media disk cache (WebKit)
 ## https://trac.webkit.org/wiki/EnvironmentVariables
