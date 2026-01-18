@@ -5,6 +5,7 @@ FIREFOX_ENVS='MOZ_CRASHREPORTER="" MOZ_CRASHREPORTER_DISABLE=1 MOZ_CRASHREPORTER
 # Paths
 CODIUM_PATH='/usr/bin/bubblejail run -- codium /usr/bin/env ELECTRON_OZONE_PLATFORM_HINT="auto" /usr/share/codium/codium --wait';
 FIREFOX_PATH="/usr/bin/bubblejail run -- firefox /usr/bin/env ${FIREFOX_ENVS} /usr/bin/ujust with-standard-malloc /opt/firefox/firefox";
+NANO_PATH='/usr/bin/nano';
 THUNDERBIRD_PATH="/usr/bin/bubblejail run -- thunderbird /usr/bin/env ${FIREFOX_ENVS} MOZ_REMOTE_SETTINGS_DEVTOOLS=1 /usr/bin/ujust with-standard-malloc /opt/thunderbird/thunderbird";
 
 # Always enable VA-API
@@ -13,8 +14,8 @@ export GST_VAAPI_ALL_DRIVERS=1;
 
 # Configure defaults
 export BROWSER="${FIREFOX_PATH}";
-export EDITOR='/usr/bin/nano';
-export VISUAL='/usr/bin/nano';
+export EDITOR="${NANO_PATH}";
+export VISUAL="${NANO_PATH}";
 
 # Configure Homebrew (if installed)
 export HOMEBREW_ASK=1;
@@ -87,15 +88,15 @@ export SB_GAPI_KEY_FILE='/home/user/certs-keys/ironfox/sb-gapi.data';
 # Aliases
 alias codium="${CODIUM_PATH}";
 alias envedit='/usr/bin/run0edit /etc/profile.d/celenity-env.sh';
+alias envup='source /etc/profile.d/celenity-env.sh';
+alias firefox="${FIREFOX_PATH}";
+alias thunderbird="${THUNDERBIRD_PATH}";
+alias update='/usr/bin/rpm-ostree refresh-md --force && /usr/bin/ujust update-system && /home/linuxbrew/.linuxbrew/bin/brew update --force --verbose && /home/linuxbrew/.linuxbrew/bin/brew upgrade --greedy --verbose && /usr/bin/run0 /usr/bin/bash /opt/celenity/scripts/update_firefox.sh && /usr/bin/run0 /usr/bin/bash /opt/celenity/scripts/update_thunderbird.sh && /usr/bin/flatpak --system update && /usr/bin/flatpak --user update && /usr/bin/ujust update-firmware';
+
+# misc. (unused ATM)
 # alias envedit='/usr/bin/run0edit /home/user/.bashrc';
 # alias envedit='/usr/bin/nano /home/user/.bashrc';
-alias envup='source /etc/profile.d/celenity-env.sh';
 # alias envup='source /home/user/.bashrc';
-alias firefox="${FIREFOX_PATH}";
 # alias firefox='/usr/bin/ujust with-standard-malloc /opt/firefox/firefox';
-alias git-up='/usr/bin/git commit -am 'Update' && git push';
-alias gits='/usr/bin/git commit --signoff';
-alias thunderbird="${THUNDERBIRD_PATH}";
 # alias thunderbird='MOZ_REMOTE_SETTINGS_DEVTOOLS=1 /usr/bin/ujust with-standard-malloc /opt/thunderbird/thunderbird';
-alias update='/usr/bin/rpm-ostree refresh-md --force && /usr/bin/ujust update-system && /home/linuxbrew/.linuxbrew/bin/brew update --force --verbose && /home/linuxbrew/.linuxbrew/bin/brew upgrade --greedy --verbose && /usr/bin/run0 /usr/bin/bash /opt/celenity/scripts/update_firefox.sh && /usr/bin/run0 /usr/bin/bash /opt/celenity/scripts/update_thunderbird.sh && /usr/bin/flatpak --system update && /usr/bin/flatpak --user update && /usr/bin/ujust update-firmware';
 #alias update='/usr/bin/sudo /usr/bin/dnf update --refresh && /usr/bin/sudo /usr/bin/bash /opt/celenity/scripts/update_firefox.sh && /usr/bin/sudo /usr/bin/bash /opt/celenity/scripts/update_thunderbird.sh && /usr/bin/flatpak --system update && /usr/bin/flatpak --user update && /usr/bin/fwupdmgr refresh --force && /usr/bin/fwupdmgr upgrade';
