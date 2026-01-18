@@ -705,7 +705,7 @@
     "window.clickThroughInactive": false,
     "window.closeWhenEmpty": false,
     "window.commandCenter": false,
-    "window.confirmBeforeClose": "keyboardOnly",
+    "window.confirmBeforeClose": "always",
     "window.confirmSaveUntitledWorkspace": true,
     "window.doubleClickIconToClose": false,
     "window.nativeTabs": false,
