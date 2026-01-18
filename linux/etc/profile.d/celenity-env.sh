@@ -3,6 +3,7 @@
 FIREFOX_ENVS='MOZ_CRASHREPORTER="" MOZ_CRASHREPORTER_DISABLE=1 MOZ_CRASHREPORTER_NO_REPORT=1 MOZ_CRASHREPORTER_URL="data;" MOZ_DISABLE_ASAN_REPORTER=1 MOZ_ENABLE_WAYLAND=1 SSLKEYLOGFILE=""';
 
 # Paths
+CODIUM_PATH='/usr/bin/bubblejail run -- codium /usr/bin/env ELECTRON_OZONE_PLATFORM_HINT="auto" /usr/share/codium/codium --wait';
 FIREFOX_PATH="/usr/bin/bubblejail run -- firefox /usr/bin/env ${FIREFOX_ENVS} /usr/bin/ujust with-standard-malloc /opt/firefox/firefox";
 THUNDERBIRD_PATH="/usr/bin/bubblejail run -- thunderbird /usr/bin/env ${FIREFOX_ENVS} MOZ_REMOTE_SETTINGS_DEVTOOLS=1 /usr/bin/ujust with-standard-malloc /opt/thunderbird/thunderbird";
 
@@ -84,7 +85,8 @@ export SB_GAPI_KEY_FILE='/home/user/IronFox/sb-gapi.data';
 # export GPG_TTY=$(tty);
 
 # Aliases
-alias envedit='/usr/bin/run0edit /etc/profile.d/celenity-env.sh'
+alias codium="${CODIUM_PATH}";
+alias envedit='/usr/bin/run0edit /etc/profile.d/celenity-env.sh';
 # alias envedit='/usr/bin/run0edit /home/user/.bashrc';
 # alias envedit='/usr/bin/nano /home/user/.bashrc';
 alias envup='source /etc/profile.d/celenity-env.sh';
