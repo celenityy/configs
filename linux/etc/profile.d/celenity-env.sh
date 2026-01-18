@@ -79,7 +79,7 @@ export ELECTRON_OZONE_PLATFORM_HINT='auto';
 export WEBKIT_FORCE_SANDBOX=1;
 
 # For building IronFox...
-export SB_GAPI_KEY_FILE='/home/user/IronFox/sb-gapi.data';
+export SB_GAPI_KEY_FILE='/home/user/certs-keys/ironfox/sb-gapi.data';
 
 # Required for GPG
 # export GPG_TTY=$(tty);
