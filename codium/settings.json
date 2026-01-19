@@ -329,7 +329,7 @@
     "git.terminalAuthentication": false,
     "git.timeline.showAuthor": true,
     "git.timeline.showUncommitted": true,
-    "git.untrackedChanges": "hidden",
+    "git.untrackedChanges": "separate",
     "git.useEditorAsCommitInput": false,
     "github-enterprise.uri": "",
     "gitlens.advanced.abbreviateShaOnCopy": false,
