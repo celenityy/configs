@@ -8,19 +8,23 @@ adb shell am start -a "com.android.webview.SHOW_DEV_UI"
 
 `site-per-process` -> `Enabled`
 
+`FurtherOptimizeParsingDataUrls` -> `Enabled`
+
+`PreloadLinkRelDataUrls` -> `Disabled`
+
+`OptimizeHTMLElementUrls` -> `Enabled`
+
 `WebViewAccelerateSmallCanvases` -> `Enabled`
 
 `WebViewMixedContentAutoupgrades` -> `Enabled`
 
 `GMSCoreEmoji` -> `Disabled`
 
-`AutofillEnableLoyaltyCardsFilling` -> `Disabled` *(This uses Google Wallet)*
-
-`AutofillUKMExperimentalFields` -> `Disabled`
+`AutofillServerQueryPredictionsEarly` -> `Disabled`
 
 `IPH_AutofillVirtualCardSuggestion` -> `Disabled`
 
-`WebViewXRequestedWithHeaderControl` -> `Enabled`
+`WebViewUseMetricsUploadServiceOnlySdkRuntime` -> `Disabled` **(For devices without GMS)**
 
 `WebViewReduceUAAndroidVersionDeviceModel` -> `Enabled`
 
@@ -34,17 +38,15 @@ adb shell am start -a "com.android.webview.SHOW_DEV_UI"
 
 `DeprecateUnloadByAllowList` -> `Disabled`
 
-`ReportEventTimingAtVisibilityChange` -> `Disabled`
-
 `WebViewFileSystemAccess` -> `Disabled`
+
+`WebRtcPqcForDtls` -> `Enabled`
 
 `ReportingServiceAlwaysFlush` -> `Enabled`
 
 `MetricsLogTrimming` -> `Enabled`
 
 `ReduceSubresourceResponseStartedIPC` -> `Enabled`
-
-`PrivacySandboxAdsAPIsOverride` -> `Disabled`
 
 `AddWarningShownTSToClientSafeBrowsingReport` -> `Disabled`
 
@@ -56,23 +58,23 @@ adb shell am start -a "com.android.webview.SHOW_DEV_UI"
 
 `EnablePerfettoSystemTracing` -> `Disabled`
 
-`CollectAndroidFrameTimelineMetrics` -> `Disabled`
+`EnablePerfettoSystemBackgroundTracing` -> `Disabled`
+
+`AndroidHDR` -> `Enabled` **(For devices with HDR support)**
 
 `PartitionAllocMemoryReclaimer` -> `Enabled`
 
-`WebViewAutoSAA` -> `Disabled`
-
 `UseRustJsonParser` -> `Enabled`
 
-`WebViewMediaIntegrityApiBlinkExtension` -> `Disabled`
-
 `ThrottleUnimportantFrameTimers` -> `Enabled`
-
-`ReduceTransferSizeUpdatedIPC` -> `Enabled`
 
 `WebViewBackForwardCache` -> `Disabled`
 
 `AccessibilityManageBroadcastReceiverOnBackground` -> `Disabled`
+
+`BatteryStatusManagerBroadcastReceiverInBackground` -> `Disabled`
+
+`PartitionAllocWithAdvancedChecks` -> `Enabled` *([some info](https://groups.google.com/a/chromium.org/g/ios-reviews/c/BY-Xq_Zeds8)*
 
 `BackForwardCacheSendNotRestoredReasons` -> `Disabled`
 
@@ -86,33 +88,23 @@ adb shell am start -a "com.android.webview.SHOW_DEV_UI"
 
 `InputStreamOptimizations` -> `Enabled`
 
+`WebViewSkipInterceptsForPrefetch` -> `Disabled`
+
 `EnableHangWatcher` -> `Disabled`
-
-`WebViewDisableCHIPS` -> `Disabled`
-
-`DIPS` -> `Enabled`
 
 `CCSlimming` -> `Enabled`
 
-`AllowSensorsToEnterBfcache` -> `Disabled`
+`SensitiveContent` -> `Enabled` *([info](https://source.chromium.org/chromium/chromium/src/+/main:components/sensitive_content/))*
 
-`FetchLaterAPI` -> `Disabled`
+`BFCacheOpenBroadcastChannel` -> `Disabled`
 
 `Prerender2FallbackPrefetchSpecRules` -> `Disabled`
 
-`PreloadLinkRelDataUrls` -> `Disabled`
-
-`PrefetchServiceWorker` -> `Disabled`
-
-`OptimizeHTMLElementUrls` -> `Enabled`
+`FetchLaterAPI` -> `Disabled`
 
 `SharedStorageAPI` -> `Disabled`
 
 `HttpCacheNoVarySearch` -> `Disabled`
-
-`PartitionAllocWithAdvancedChecks` -> `Enabled` *([some info](https://groups.google.com/a/chromium.org/g/ios-reviews/c/BY-Xq_Zeds8)*
-
-`SensitiveContent` -> `Enabled` *([info](https://source.chromium.org/chromium/chromium/src/+/main:components/sensitive_content/))*
 
 `RestrictAbusePortsOnLocalhost` -> `Enabled`
 
@@ -120,12 +112,30 @@ adb shell am start -a "com.android.webview.SHOW_DEV_UI"
 
 `CacheSharingForPervasiveScripts` -> `Disabled`
 
-## for devices without google play services:
+`PrefetchServiceWorker` -> `Disabled`
 
-`WebViewUseMetricsUploadService` -> `Disabled`
+`WebVieEnableApiCallUserActions` -> `Disabled`
 
-`WebViewUseMetricsUploadServiceOnlySdkRuntime` -> `Disabled`
+`WebViewEarlyStartupTracing` -> `Disabled`
 
-## for devices with hdr support:
+`WebViewEarlyTracingInit` -> `Disabled`
 
-`AndroidHDR` -> `Enabled`
+`WebViewBackgroundTracingInit` -> `Disabled`
+
+`WebViewFetchOriginTrialsComponent` -> `Disabled`
+
+`WebViewWebPerformanceMetricsReporting` -> `Disabled`
+
+`XMLRustForNonXslt` -> `Enabled`
+
+`RustyBmpFeature` -> `Enabled`
+
+`WebViewSaveStateIncludeHeaders` -> `Disabled`
+
+`ThrottleSendingCustomUserTimings` -> `Enabled`
+
+`PrefetchPrerenderINtegration` -> `Disabled`
+
+`AAPMBlocksWebGPU` -> `Enabled`
+
+`WebViewPersistHttpServerProperties` -> `Disabled`
